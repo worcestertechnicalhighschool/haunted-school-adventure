@@ -27,9 +27,8 @@ export default class StatAllocator extends react.Component {
             availPts: this.state.availPts-1
         }
         stats.stats[statName] += 1
-        this.setState(stats, () => {
-            this.props.onStatAllocation?.(this.stats)
-        })
+        this.setState(stats)
+        this.props.onStatAllocation?.(stats.stats)
     }
     statDec(statName) {
         if (this.state.stats[statName] <= 0)
@@ -39,9 +38,8 @@ export default class StatAllocator extends react.Component {
             availPts: this.state.availPts+1
         }
         stats.stats[statName] -= 1
-        this.setState(stats, () => {
-            this.props.onStatAllocation?.(this.stats)
-        })
+        this.setState(stats)
+        this.props.onStatAllocation?.(stats.stats)
     }
     render() {
         return (
