@@ -43,7 +43,7 @@ export default class StatAllocator extends react.Component {
                 {Object.entries(this.state.stats).map(([key, value]) => (
                     <StatPoint
                     name={key}
-                        count={this.state.stats.atk}
+                        count={value}
                         statInc={() => this.statInc(key)}
                         statDec={() => this.statDec(key)}
                         />
