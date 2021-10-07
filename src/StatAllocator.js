@@ -19,7 +19,7 @@ export default class StatAllocator extends react.Component {
         this.statDec = this.statDec.bind(this);
     }
     statInc(statName) {
-        if (this.state.availPts < 0)
+        if (this.state.availPts <= 0)
             return;
         console.log("AAAAAAAAAA")
         let stats = {
@@ -50,6 +50,24 @@ export default class StatAllocator extends react.Component {
                     count={this.state.stats.atk}
                     statInc={() => this.statInc("atk")}
                     statDec={() => this.statDec("atk")}
+                    />
+                <StatPoint
+                    name="mag"
+                    count={this.state.stats.mag}
+                    statInc={() => this.statInc("mag")}
+                    statDec={() => this.statDec("mag")}
+                    />
+                <StatPoint
+                    name="stl"
+                    count={this.state.stats.stl}
+                    statInc={() => this.statInc("stl")}
+                    statDec={() => this.statDec("stl")}
+                    />
+                <StatPoint
+                    name="def"
+                    count={this.state.stats.def}
+                    statInc={() => this.statInc("def")}
+                    statDec={() => this.statDec("def")}
                     />
             </div>
         )
