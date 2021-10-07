@@ -3,16 +3,11 @@ import react from 'react'
 import { SourceMapGenerator } from 'source-map';
 
 export default class StatAllocator extends react.Component {
-    constructor({availPts, onStatAllocation = null})
+    constructor({availPts, stats, setStats = null})
     {
-        super({availPts, onStatAllocation})
+        super({availPts, stats, setStats})
         this.state = {
-            stats: {
-                atk: 0,
-                mag: 0,
-                def: 0,
-                stl: 0,
-            },
+            stats: stats,
             availPts: availPts
         }
         this.statInc = this.statInc.bind(this);
@@ -28,7 +23,7 @@ export default class StatAllocator extends react.Component {
         }
         stats.stats[statName] += 1
         this.setState(stats)
-        this.props.onStatAllocation?.(stats.stats)
+        this.props.setStats?.(stats.stats)
     }
     statDec(statName) {
         if (this.state.stats[statName] <= 0)
@@ -39,36 +34,20 @@ export default class StatAllocator extends react.Component {
         }
         stats.stats[statName] -= 1
         this.setState(stats)
-        this.props.onStatAllocation?.(stats.stats)
+        this.props.setStats?.(stats.stats)
     }
     render() {
         return (
             <div className="">
                 <h1>{this.state.availPts}</h1>
-                <StatPoint
-                    name="atk"
-                    count={this.state.stats.atk}
-                    statInc={() => this.statInc("atk")}
-                    statDec={() => this.statDec("atk")}
-                    />
-                <StatPoint
-                    name="mag"
-                    count={this.state.stats.mag}
-                    statInc={() => this.statInc("mag")}
-                    statDec={() => this.statDec("mag")}
-                    />
-                <StatPoint
-                    name="stl"
-                    count={this.state.stats.stl}
-                    statInc={() => this.statInc("stl")}
-                    statDec={() => this.statDec("stl")}
-                    />
-                <StatPoint
-                    name="def"
-                    count={this.state.stats.def}
-                    statInc={() => this.statInc("def")}
-                    statDec={() => this.statDec("def")}
-                    />
+                {Object.entries(this.state.stats).map(([key, value]) => (
+                    <StatPoint
+                    name={key}
+                        count={this.state.stats.atk}
+                        statInc={() => this.statInc(key)}
+                        statDec={() => this.statDec(key)}
+                        />
+                ))}
             </div>
         )
     }
