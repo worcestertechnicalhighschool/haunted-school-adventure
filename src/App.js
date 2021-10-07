@@ -11,7 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       game: {
-        view: 'start'
+        view: 'stats'
       },
       player: {
         name: '',
@@ -28,6 +28,7 @@ class App extends Component {
       enemy: null
     }
     this.setName = this.setName.bind(this);
+    this.setStats = this.setStats.bind(this);
   }
 
   componentDidMount(){
@@ -48,7 +49,7 @@ class App extends Component {
     const setView = () => {
       switch(viewMode){
         case 'start': return <Start setName={this.setName} />;
-        case 'stats': return <StatAllocator stats={this.state.player.stats} setStats={this.setStats} />;
+        case 'stats': return <StatAllocator stats={this.state.player.stats} setStats={this.setStats} availPts={10} />;
         case 'ready': return <Ready />;
         default: return 'error';
       }
