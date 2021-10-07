@@ -11,7 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       game: {
-        view: 'stats'
+        view: 'start'
       },
       player: {
         name: '',
