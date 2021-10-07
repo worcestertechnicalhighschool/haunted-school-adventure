@@ -4,6 +4,7 @@ import './App.css';
 
 import Start from './Start';
 import StatAllocator from './StatAllocator';
+import Ready from './Ready';
 
 class App extends Component {
   constructor(props){
@@ -47,7 +48,8 @@ class App extends Component {
     const setView = () => {
       switch(viewMode){
         case 'start': return <Start setName={this.setName} />;
-        case 'stats': return <StatAllocator stats={this.state.player.stats} setStats={this.setStats}/>;
+        case 'stats': return <StatAllocator stats={this.state.player.stats} setStats={this.setStats} />;
+        case 'ready': return <Ready />;
         default: return 'error';
       }
     }
