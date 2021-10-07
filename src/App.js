@@ -55,7 +55,7 @@ class App extends Component {
       }
     }
     return (
-      <main className="App">
+      <main className="App bg-purple-500 shadow-lg max-w-sm mx-auto">
         { setView() }
       </main>
     );

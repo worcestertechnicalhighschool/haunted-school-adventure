@@ -23,10 +23,10 @@ class Start extends Component{
         return(
             <section className="Start">
                 <h1>Haunted School Adventure</h1>
-                <h2>Enter a name</h2>
+                <h2 className="text-yellow-300">Enter a name</h2>
                 <input type="text" name="name" onChange={ this.handleText }/>
                 <p>{ this.state.name }</p>
-                <button onClick={ this.handleClick }>Start</button>
+                <button class="bg-green-300" onClick={ this.handleClick }>Start</button>
             </section>
         );
     }
