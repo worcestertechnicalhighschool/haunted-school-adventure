@@ -23,7 +23,6 @@ export default class StatAllocator extends react.Component {
         }
         stats.stats[statName] += 1
         this.setState(stats)
-        this.props.setStats?.(stats.stats)
     }
     statDec(statName) {
         if (this.state.stats[statName] <= 0)
@@ -34,7 +33,6 @@ export default class StatAllocator extends react.Component {
         }
         stats.stats[statName] -= 1
         this.setState(stats)
-        this.props.setStats?.(stats.stats)
     }
     render() {
         return (
@@ -48,6 +46,7 @@ export default class StatAllocator extends react.Component {
                         statDec={() => this.statDec(key)}
                         />
                 ))}
+                <button onClick={() => this.props?.setStats(this.state.stats)}>Im done!</button>
             </div>
         )
     }
