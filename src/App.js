@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import Start from './Start';
+import StatAllocator from './StatAllocator';
 
 class App extends Component {
   constructor(props){
@@ -33,18 +34,22 @@ class App extends Component {
   }
 
   setName( newName ){
-    const newState = { player: { name: newName } }
+    const newState = { player: { name: newName }, game: { view: "stats" } }
     this.setState( newState )
-    console.log(newName + ' Set!');
   }
 
   render(){
     const viewMode = this.state.game.view;
+    const setView = () => {
+      switch(viewMode){
+        case 'start': return <Start setName={this.setName} />;
+        case 'stats': return <StatAllocator />;
+        default: return 'error';
+      }
+    }
     return (
       <main className="App">
-        { (viewMode === 'start') ? 
-          <Start setName={this.setName} /> : "error"
-        }
+        { setView() }
       </main>
     );
   }
