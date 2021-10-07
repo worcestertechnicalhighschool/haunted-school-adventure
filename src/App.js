@@ -2,6 +2,8 @@ import react, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import Start from './Start';
+
 class App extends Component {
   constructor(props){
     super(props);
@@ -23,16 +25,26 @@ class App extends Component {
       },
       enemy: null
     }
+    this.setName = this.setName.bind(this);
   }
 
   componentDidMount(){
-     // load view component
+     // load view component 
+  }
+
+  setName( newName ){
+    const newState = { player: { name: newName } }
+    this.setState( newState )
+    console.log(newName + ' Set!');
   }
 
   render(){
+    const viewMode = this.state.game.view;
     return (
       <main className="App">
-        VIEW COMPONENT
+        { (viewMode === 'start') ? 
+          <Start setName={this.setName} /> : "error"
+        }
       </main>
     );
   }
